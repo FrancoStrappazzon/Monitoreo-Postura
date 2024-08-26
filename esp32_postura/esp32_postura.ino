@@ -88,10 +88,22 @@ void loop() {
     Serial.print(distance);
     Serial.println(" cm");
 
+    if(distance <45 || distance > 65){
+      //Muestro un mensaje de error
+      display.println("Corregir  distancia");
+    // Enviar el contenido al display
+      display.display();
+
+      digitalWrite(LED_PIN, HIGH);  // Enciende el LED
+    }
+    else{
     // Mostrar un mensaje en la pantalla
     display.println("Distancia:" + String(distance) + "cm");
     // Enviar el contenido al display
     display.display();
+
+    digitalWrite(LED_PIN, LOW);   // Apaga el LED
+    }
   // Esperar un momento antes de la siguiente medición
     delay(2000);
   }
