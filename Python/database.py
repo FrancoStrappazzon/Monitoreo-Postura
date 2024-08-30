@@ -41,7 +41,7 @@ def insert_data(distance, posture_status):
     cursor = conn.cursor()
     
     #Inserto datos a la tabla
-    cursor.execute("INSERT INTO posture_data (distante, posture_status) VALUES (%s, %s)", (distance, posture_status))
+    cursor.execute("INSERT INTO posture_data (distancia, posture_status) VALUES (%s, %s)", (distance, posture_status))
     
     conn.commit()
     cursor.close()

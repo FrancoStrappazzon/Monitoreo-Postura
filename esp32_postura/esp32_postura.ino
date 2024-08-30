@@ -7,6 +7,11 @@
 const int trigPin = 5;
 const int echoPin = 18;
 
+//pulsador para exportar archivo csv
+const int pulsador = 34; 
+bool buttonState = false; //estado actual del pulsador
+bool lastButtonState = false; //ultimo estado del pulsador
+
 // Variables para almacenar el tiempo y la distancia
 long duration;
 int distance;
@@ -26,6 +31,7 @@ void setup() {
   Serial.begin(115200);
 
   pinMode(LED_PIN, OUTPUT);
+  pinMode(pulsador, INPUT_PULLUP);
 
   // Inicializar el display OLED
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  // Dirección 0x3C para SSD1306
@@ -56,6 +62,20 @@ void setup() {
 }
 
 void loop() {
+
+//-------------------Logica para el pulsador-----------------
+  //estado actual del pulsador
+  buttonState = digitalRead(pulsador);
+  //Si se presiono el pulsador envio en comando por el puerto serie
+  if(buttonState != lastButtonState){
+    if(buttonState == LOW){   //Se activa por LOW
+      Serial.print("EXPORT_DATA");    //Envio comando para exportar los datos
+    }
+    delay(50); //anti rebote
+  }
+  lastButtonState = buttonState;  //actualizo el estado 
+
+//--------------------Sensor ultrasonido------------------
   // Asegurarse de que el pin TRIG esté en LOW
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -70,7 +90,8 @@ void loop() {
 
   // Calcular la distancia en cm
   distance = duration * 0.034 / 2;
-  
+
+//-----------------------Display---------------------------- 
   display.clearDisplay();
   // Configurar color de texto
   display.setTextColor(SSD1306_WHITE);
