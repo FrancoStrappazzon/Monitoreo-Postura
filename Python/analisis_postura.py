@@ -2,7 +2,8 @@ import serial
 import cv2
 import re
 import time
-from database import insert_data #importo la funcion para insertar datos
+import pandas as pd
+from database import insert_data, fetch_data #importo la funcion para insertar datos
 
 
 def config_serial():
@@ -44,7 +45,13 @@ def check_posture():
             
     return posture_status
 
-    
+def export_data_to_csv():
+    data = fetch_data() #obtengo los datos de la base de datos
+    df = pd.DataFrame(data, columns=["id","timestamp","distancia","posture_status"])  
+    df.to_csv('datos_postura.csv', index=False)
+    print("Datos exportados a 'datos_postura.csv' ")
+
+
 
 while True:
     ser = config_serial()  # Configura el puerto serial
@@ -61,7 +68,14 @@ while True:
         if ser.in_waiting > 0:
         # Leo la línea completa desde el puerto serie
             line = ser.readline().decode('utf-8').strip()
-
+            print(f"Mensaje recibido {line}")
+            
+            
+            if "EXPORT_DATA" in line:
+                print("Exportando datos")
+                export_data_to_csv()
+            
+            
         # Extraer la distancia usando una expresión regular
             match = re.search(r'Distancia: (\d+) cm', line)
         

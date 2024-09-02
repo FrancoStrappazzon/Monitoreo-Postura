@@ -46,7 +46,23 @@ def insert_data(distance, posture_status):
     conn.commit()
     cursor.close()
     conn.close()
-            
+        
+#Funcion para obtener los datos de la base de datos
+def fetch_data():
+    conn = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "your_new_password",
+        database = "posture_monitoring"
+    )    
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM posture_data")
+    data = cursor.fetchall()        #obtiene todas las filas, devuelve una lista en forma de tuplas 
+    cursor.close()
+    conn.close()
+    return data
+
+
 #esto es para que no se ejecute este archivo si lo importo desde otro script
 if __name__ == "__main__":
     create_database_and_table()
