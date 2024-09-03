@@ -30,6 +30,7 @@ def check_posture():
         print("No se pudo cargar el clasificador de rostros.")
         exit()
 
+
     # Detecto rostro
     faces = face_cascade.detectMultiScale(gray, 1.1, 4)
 
