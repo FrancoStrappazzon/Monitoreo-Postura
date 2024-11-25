@@ -28,5 +28,5 @@ Este proyecto implementa un sistema de monitoreo de postura utilizando una ESP32
 
 ![monitoreo_postura3](https://github.com/user-attachments/assets/7f4ef0ec-9f5b-4b63-9fc1-c224e8386e6b)
 
-
+![monitoreo_postura5](https://github.com/user-attachments/assets/dbc6faf7-ba9d-484e-bb2d-4f4923bec35b)
 
