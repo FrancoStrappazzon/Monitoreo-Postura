@@ -23,3 +23,10 @@ Este proyecto implementa un sistema de monitoreo de postura utilizando una ESP32
   - Librerías de Python: `opencv-python`, `pyserial`, `pandas`, `mysql-connector-python`
   - Arduino IDE para programar la ESP32
   - Servidor MySQL instalado
+
+![monitoreo_postura](https://github.com/user-attachments/assets/cf3e27aa-dbb8-48d8-b08f-ce58a3e5ac89)
+
+![monitoreo_postura3](https://github.com/user-attachments/assets/7f4ef0ec-9f5b-4b63-9fc1-c224e8386e6b)
+
+
+
