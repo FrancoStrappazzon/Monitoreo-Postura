@@ -16,7 +16,9 @@ Este proyecto implementa un sistema de monitoreo de postura utilizando una ESP32
   - ESP32
   - Sensor de Ultrasonido HC-SR04
   - Cámara web
-  - Pulsador 
+  - Pulsador
+  - Pantalla Oled 0.96p I2c 128x64
+  - Led rojo
 
 - **Software:**
   - Python 3.x
